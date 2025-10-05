@@ -3,6 +3,7 @@
 
 body{
   background-color: #f7feff;
+  /* color: #cde7ea; */
 }
 
 .recharts-wrapper *:focus {
@@ -15,7 +16,7 @@ body{
 }
 
 @font-face {
-  font-family: amaranth;
+  font-family: amaranth; 
   src: url('/fonts/Amaranth-Bold.ttf') format('truetype');
 }
 
@@ -23,6 +24,7 @@ body{
   --color-backgroundWhite: #f7feff;
   --color-customDarkBlue: #003049;
   --color-card: #e0fbff;
+  --color-cardBorder: #cde7ea;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-urbanist: urbanist;

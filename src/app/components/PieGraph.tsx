@@ -29,9 +29,9 @@ export default function PieGraph() {
 
 
   return (
-    <div className='flex flex-col bg-card w-full h-[42vh] rounded-xl drop-shadow-sm'>
+    <div className='flex flex-col border-2 border-cardBorder bg-card w-full h-[42vh] rounded-xl drop-shadow-sm'>
       <div className='ml-4 mt-2 h-[5vh]'><b>Visit Sources</b></div>
-      <div className='h-[95%] w-[95%] self-center bg-backgroundWhite rounded-xl mb-2 pt-4 pr-4'>
+      <div className='h-[95%] w-[95%] self-center border-2 border-cardBorder bg-backgroundWhite rounded-xl mb-2 pt-4 pr-4'>
         <ResponsiveContainer width="100%" height="100%">
           <PieChart width={400} height={400}>
             <Pie
