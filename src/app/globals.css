@@ -1,18 +1,30 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-body{
-  background-color: #FDF0D5;
+body {
+  background-color: #fdf0d5;
 }
 
 .recharts-wrapper *:focus {
   outline: none;
 }
 
+@font-face {
+  font-family: urbanist;
+  src: url('/fonts/Urbanist-VariableFont_wght.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: amaranth;
+  src: url('/fonts/Amaranth-Bold.ttf') format('truetype');
+}
+
 @theme {
-  --color-backgroundWhite: #FDF0D5;
-  --color-customLightBlue: #669BBC;
+  --color-backgroundWhite: #fdf0d5;
+  --color-customLightBlue: #669bbc;
   --color-customDarkBlue: #003049;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-urbanist: urbanist;
+  --font-amaranth: amaranth;
 }
