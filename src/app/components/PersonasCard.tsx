@@ -55,7 +55,6 @@ export default function PersonasCard({
     let timer: NodeJS.Timeout;
 
     if (isActive) {
-      // Delay graph mount after card transition (300–500 ms)
       timer = setTimeout(() => setShowGraph(true), 400);
     } else {
       setShowGraph(false);
@@ -127,9 +126,9 @@ export default function PersonasCard({
       {isActive && (
         <motion.div
           key={persona.details.name}
-          initial={{ x: 100, opacity: 0 }} // starts slightly right
-          animate={{ x: 0, opacity: 1 }} // slides in to center
-          // exit={{ x: -100, opacity: 0 }}         // slides out left
+          initial={{ x: 100, opacity: 0 }} 
+          animate={{ x: 0, opacity: 1 }} 
+          // exit={{ x: -100, opacity: 0 }}
           transition={{ duration: 0.75, ease: "easeOut" }}
           className="flex flex-col items-center w-full h-full p-4 text-center"
         >

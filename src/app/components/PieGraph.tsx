@@ -17,27 +17,24 @@ const renderActiveShape = (props: any) => {
       <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
         {payload.name}
       </text>
-      {/* The slice itself */}
       <Sector
         cx={cx}
         cy={cy}
         color={"red"}
         innerRadius={innerRadius}
-        outerRadius={outerRadius} // slightly pop out
+        outerRadius={outerRadius} 
         startAngle={startAngle}
         endAngle={endAngle}
         fill="#FF8042"
       />
 
-      {/* Simple "textbox" with details */}
       <foreignObject
-        x={cx! + outerRadius + 10} // roughly center the box
-        y={cy! - outerRadius} // place above the slice
+        x={cx! + outerRadius + 10}
+        y={cy! - outerRadius} 
         width={100}
         height={200}
       >
         <div
-          // xmlns="http://www.w3.org/1999/xhtml"
           style={{
             backgroundColor: 'white',
             color: 'black',

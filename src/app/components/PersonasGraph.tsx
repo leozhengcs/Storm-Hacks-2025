@@ -1,7 +1,7 @@
 "use client";
 import * as d3 from "d3";
 import { useEffect, useRef } from "react";
-import { useRouter } from "next/navigation"; // import router
+import { useRouter } from "next/navigation";
 import personas from "@/lib/personas.json";
 
 type NodeData = {
@@ -13,7 +13,7 @@ type NodeData = {
 
 export default function PersonasGraph() {
   const ref = useRef<SVGSVGElement>(null);
-  const router = useRouter(); // initialize router
+  const router = useRouter();
 
   useEffect(() => {
     if (!personas || !Array.isArray(personas)) return;

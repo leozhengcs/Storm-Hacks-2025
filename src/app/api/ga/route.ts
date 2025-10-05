@@ -1,6 +1,5 @@
-// app/api/ga/route.ts
-export const runtime = "nodejs"; // GA SDK needs Node (not Edge)
-export const dynamic = "force-dynamic"; // optional, avoid caching in dev
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 import { NextResponse } from "next/server";
 import { BetaAnalyticsDataClient } from "@google-analytics/data";
@@ -46,7 +45,6 @@ export async function GET() {
 
     return NextResponse.json({ report, realtime });
   } catch (err: any) {
-    // Return JSON error (so your caller never tries to parse HTML)
     return NextResponse.json(
       { error: err?.message ?? "Unknown error" },
       { status: 500 }

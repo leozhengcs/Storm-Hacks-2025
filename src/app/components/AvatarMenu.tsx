@@ -1,4 +1,3 @@
-// components/AvatarMenu.tsx
 import { useEffect, useRef, useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
@@ -7,7 +6,7 @@ export default function AvatarMenu({
   profileSrc,
   profileAlt = "Profile",
   profileHref = "/profile",
-  onLogout, // e.g. () => signOut()
+  onLogout,
 }: {
   profileSrc: string | StaticImageData;
   profileAlt: string;
@@ -18,7 +17,6 @@ export default function AvatarMenu({
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const menuRef = useRef<HTMLDivElement | null>(null);
 
-  // Close on click outside or Escape
   useEffect(() => {
     function onDocClick(e: MouseEvent) {
       if (!open) return;

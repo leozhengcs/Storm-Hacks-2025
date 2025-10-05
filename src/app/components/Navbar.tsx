@@ -3,7 +3,6 @@
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import profileMain from "@/static/profileMain.png";
 import AvatarMenu from "./AvatarMenu";
 
@@ -52,7 +51,6 @@ export default function Navbar() {
         {navItems.map((item) => {
           const isActive = pathname === item.href;
 
-          //   Navigation
           if (item.type !== "dropdown") {
             return (
               <button
@@ -76,7 +74,6 @@ export default function Navbar() {
             );
           }
 
-          //    Dropdown
           return (
             <div key={item.name} className="relative">
               <button

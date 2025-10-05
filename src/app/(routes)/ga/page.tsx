@@ -1,8 +1,5 @@
-// app/ga/page.tsx
 async function getGa() {
   const res = await fetch(`http://localhost:3000/api/ga`, {
-    // or just '/api/ga' from the browser;
-    // on the server you may want absolute URL
     cache: "no-store",
   });
   return res.json();
