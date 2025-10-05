@@ -48,8 +48,10 @@ export default function LineGraph() {
   ]
 
   return (
-    <div className='border-4 border-customLightBlue w-full h-[40vh] rounded-xl bg-white'>
-      <ResponsiveContainer width="100%" height="100%">
+    <div className='flex flex-col bg-card w-full h-[42vh] rounded-xl drop-shadow-sm'>
+      <div className='ml-4 mt-2 h-[5vh] text-[#111111]'><b>Daily Visits</b></div>
+      <div className='h-[97.5%] w-[97.5%] self-center bg-backgroundWhite rounded-xl mb-2 pt-4 pr-4'>
+        <ResponsiveContainer width="100%" height="100%">
         <LineChart width={730} height={250} data={data}
           margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" />
@@ -61,6 +63,8 @@ export default function LineGraph() {
           <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
         </LineChart>
       </ResponsiveContainer>
+      </div>
+      
     </div>
   );
 }

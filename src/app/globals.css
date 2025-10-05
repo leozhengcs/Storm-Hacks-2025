@@ -1,8 +1,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-body {
-  background-color: #fdf0d5;
+body{
+  background-color: #f7feff;
 }
 
 .recharts-wrapper *:focus {
@@ -20,9 +20,9 @@ body {
 }
 
 @theme {
-  --color-backgroundWhite: #fdf0d5;
-  --color-customLightBlue: #669bbc;
+  --color-backgroundWhite: #f7feff;
   --color-customDarkBlue: #003049;
+  --color-card: #e0fbff;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-urbanist: urbanist;
