@@ -1,35 +1,39 @@
-import { useState } from 'react';
+import RadarGraph from "@/app/components/RadarGraph"
 
-const panels = [
-  { title: 'Panel 1', content: 'Content 1' },
-  { title: 'Panel 2', content: 'Content 2' },
-  { title: 'Panel 3', content: 'Content 3' },
-];
 
-export default function HorizontalAccordion() {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+type PersonasCardProps = {
+  title: string;
+  content: string;
+  isActive: boolean;
+  onClick: () => void;
+};
 
+export default function PersonasCard({
+  title,
+  content,
+  isActive,
+  onClick,
+}: PersonasCardProps) {
   return (
-    <div className="flex w-full h-64">
-      {panels.map((panel, index) => {
-        const isActive = index === activeIndex;
-        return (
-          <div
-            key={index}
-            className={`flex items-center justify-center text-white cursor-pointer transition-all duration-300 overflow-hidden`}
-            style={{
-              flex: isActive ? 5 : 1, // active panel grows
-              backgroundColor: isActive ? '#003049' : '#669BBC',
-            }}
-            onClick={() => setActiveIndex(isActive ? null : index)}
-          >
-            <div className="p-4 text-center">
-              <h2 className="font-bold">{panel.title}</h2>
-              {isActive && <p className="mt-2">{panel.content}</p>}
+    <div
+      onClick={onClick}
+      className={`mx-1 flex items-center justify-center text-white cursor-pointer transition-all duration-300 overflow-hidden h-[75vh]
+        ${isActive ?
+          'flex-[6] bg-[#003049]' :
+          'flex-[1] bg-[#669BBC]'}
+      `}
+    >
+      <div className="flex flex-col items-center w-full h-full p-4 text-center">
+        <h2 className="font-bold">{title}</h2>
+        {isActive && (
+          <div className="flex flex-col items-center justify-center gap-6 w-full">
+            <p className="text-sm  max-w-xs">{content}</p>
+            <div className="w-48 h-48 flex items-center justify-center">
+              <RadarGraph />
             </div>
           </div>
-        );
-      })}
+        )}
+      </div>
     </div>
   );
 }

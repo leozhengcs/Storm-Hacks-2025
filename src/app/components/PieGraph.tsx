@@ -1,72 +1,82 @@
-import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts';
+import { Pie, PieChart, ResponsiveContainer, Cell, Sector, SectorProps } from 'recharts';
 import { useState } from 'react';
 
-export default function PieGraph() {
+const data = [
+  { name: 'Group A', value: 400,description:"hello testing 1" },
+  { name: 'Group B', value: 300,description:"hello testing 2" },
+  { name: 'Group C', value: 300,description:"hello testing 3" },
+  { name: 'Group D', value: 200,description:"hello testing 4" },
+];
 
-  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
+type Coordinate = {
+  x: number;
+  y: number;
+};
 
-  const data = [
-    { name: 'Group A', value: 400 },
-    { name: 'Group B', value: 300 },
-    { name: 'Group C', value: 300 },
-    { name: 'Group D', value: 200 },
-  ];
 
-  const RADIAN = Math.PI / 180;
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
-  const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }: any) => {
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    const x = cx + radius * Math.cos(-(midAngle ?? 0) * RADIAN);
-    const y = cy + radius * Math.sin(-(midAngle ?? 0) * RADIAN);
+const renderActiveShape = (props: any) => {
+    const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill, payload } = props;
+
+    if (!cx || !cy || !outerRadius) return <g />;
 
     return (
-      <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-        {`${((percent ?? 1) * 100).toFixed(0)}%`}
-      </text>
+      <g>
+        {/* The slice itself */}
+        <Sector
+          cx={cx}
+          cy={cy}
+          color={"red"}
+          innerRadius={innerRadius}
+          outerRadius={outerRadius} // slightly pop out
+          startAngle={startAngle}
+          endAngle={endAngle}
+          fill="#FF8042"
+        />
+
+        {/* Simple "textbox" with details */}
+        <foreignObject
+          x={cx! + outerRadius + 10} // roughly center the box
+          y={cy! - outerRadius } // place above the slice
+          width={100}
+          height={200}
+        >
+          <div
+            // xmlns="http://www.w3.org/1999/xhtml"
+            style={{
+              backgroundColor: 'white',
+              color: 'black',
+              textAlign: 'center',
+              borderRadius: 6,
+              padding: 4,
+              fontSize: 12,
+              boxShadow: '0 0 4px rgba(0,0,0,0.3)',
+            }}
+          >
+            {payload.description}
+          </div>
+        </foreignObject>
+      </g>
     );
   };
 
-
+export default function PieGraph() {
   return (
-    <div className='flex flex-col border-2 border-cardBorder bg-card w-full h-[42vh] rounded-xl drop-shadow-sm'>
-      <div className='ml-4 mt-2 h-[5vh]'><b>Visit Sources</b></div>
-      <div className='h-[95%] w-[95%] self-center border-2 border-cardBorder bg-backgroundWhite rounded-xl mb-2 pt-4 pr-4'>
-        <ResponsiveContainer width="100%" height="100%">
-          <PieChart width={400} height={400}>
-            <Pie
-              data={data}
-              cx="50%"
-              cy="50%"
-              labelLine={false}
-              label
-              outerRadius={80}
-              fill="#8884d8"
-              dataKey="value"
-
-            >
-              {data.map((entry, index) => (
-                <Cell
-                  key={`cell-${entry.name}`}
-                  fill={COLORS[index % COLORS.length]}
-                  onMouseEnter={() => setHoverIndex(index)}
-                  onMouseLeave={() => setHoverIndex(null)}
-                  style={{
-                    cursor: 'pointer',
-                    transform: hoverIndex === index ? 'scale(1.05)' : 'scale(1)',
-                    transformOrigin: 'center',
-                    transition: 'transform 0.2s ease',
-                    filter:
-                      hoverIndex === index
-                        ? 'drop-shadow(0 0 6px rgba(0,0,0,0.2))'
-                        : 'none',
-                  }}
-                />
-              ))}
-            </Pie>
-          </PieChart>
-        </ResponsiveContainer>
-      </div>
+    <div className='border-4 border-green-500 bg-white w-1/2 rounded-xl h-[35vh]'>
+      <ResponsiveContainer width="100%" height="100%">
+        <PieChart width={400} height={400}>
+          <Pie
+            activeShape={renderActiveShape}
+            data={data}
+            cx="25%"
+            cy="50%"
+            innerRadius={60}
+            outerRadius={80}
+            fill="#8884d8"
+            dataKey="value"
+          />
+        </PieChart>
+      </ResponsiveContainer>
     </div>
   );
 }
