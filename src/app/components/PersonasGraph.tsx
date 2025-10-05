@@ -63,10 +63,10 @@ export default function PersonasGraph() {
   }, []);
 
   return (
-    <div className="border-4 border-red-400 w-full h-[78vh] rounded-xl bg-white flex justify-center p-4">
+    <div className="border-4 border-red-400 w-full h-full rounded-xl bg-white flex justify-center p-4">
       <svg
         ref={ref}
-        viewBox="0 0 450 400"
+        viewBox="0 0 400 400"
         className="w-full h-full"
         preserveAspectRatio="xMidYMid meet"
       ></svg>

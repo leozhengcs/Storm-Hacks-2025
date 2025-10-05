@@ -21,9 +21,9 @@ export default function Navbar() {
   const [organization, setOrganization] = useState(organizations[0]);
 
   return (
-    <nav className="flex items-center justify-between w-[100vw] h-[7vh] my-5 px-12">
-      <button className="font-amaranth text-4xl font-extrabold">
-        Personas
+    <nav className="flex items-center justify-between w-[100vw] h-[7vh] my-2 px-12">
+      <button className="text-3xl ">
+        Good Afternoon <b>Steven</b>
       </button>
 
       <div className="relative flex flex-row items-center bg-customDarkBlue rounded-full px-2 py-1 h-full gap-x-6">
