@@ -10,7 +10,9 @@
       "trafficSource": "Social",
       "deviceType": "Mobile",
       "productType": "Luxury Electronics",
-      "bio": "High-value, loyal customers who frequently complete purchases with high cart values and long sessions."
+      "bio": "High-value, loyal customers who frequently complete purchases with high cart values and long sessions.",
+      "image": "/images/p1Icon.png",
+      "src": "/images/p1.png"
     },
     "stats": {
       "averageSession": 420,
@@ -32,7 +34,9 @@
       "trafficSource": "Referral",
       "deviceType": "Tablet",
       "productType": "Home Decor",
-      "bio": "Users who explore products deeply but fail to complete checkout, likely hesitant or price-sensitive."
+      "bio": "Users who explore products deeply but fail to complete checkout, likely hesitant or price-sensitive.",
+      "image": "/images/p2Icon.png",
+      "src": "/images/p2.png"
     },
     "stats": {
       "averageSession": 310,
@@ -54,7 +58,9 @@
       "trafficSource": "Direct",
       "deviceType": "Tablet",
       "productType": "Fast Fashion",
-      "bio": "Visitors exploring items without clear intent to purchase, typically from organic or social traffic."
+      "bio": "Visitors exploring items without clear intent to purchase, typically from organic or social traffic.",
+      "image": "/images/p3Icon.png",
+      "src": "/images/p3.png"
     },
     "stats": {
       "averageSession": 95,
@@ -76,7 +82,9 @@
       "trafficSource": "Organic Search",
       "deviceType": "Tablet",
       "productType": "Gadgets & Accessories",
-      "bio": "Price-conscious buyers who reach checkout but occasionally drop off before paying."
+      "bio": "Price-conscious buyers who reach checkout but occasionally drop off before paying.",
+      "image": "/images/p4Icon.png",
+      "src": "/images/p4.png"
     },
     "stats": {
       "averageSession": 265,
@@ -98,7 +106,9 @@
       "trafficSource": "Organic Search",
       "deviceType": "Mobile",
       "productType": "Beauty & Personal Care",
-      "bio": "Engaged visitors who add multiple products to their cart, often comparing prices and reviews."
+      "bio": "Engaged visitors who add multiple products to their cart, often comparing prices and reviews.",
+      "image": "/images/p5Icon.png",
+      "src": "/images/p5.png"
     },
     "stats": {
       "averageSession": 210,
@@ -120,7 +130,9 @@
       "trafficSource": "Social",
       "deviceType": "Tablet",
       "productType": "Trending Deals",
-      "bio": "Low-engagement traffic from ads or referrals who leave after minimal interaction."
+      "bio": "Low-engagement traffic from ads or referrals who leave after minimal interaction.",
+      "image": "/images/p6Icon.png",
+      "src": "/images/p6.png"
     },
     "stats": {
       "averageSession": 45,

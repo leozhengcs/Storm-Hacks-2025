@@ -1,7 +1,6 @@
-import RadarGraph from "@/app/components/RadarGraph"
-import p1 from "@/static/p1.png"
-import Image, { StaticImageData } from "next/image";
-import { getMaxStats } from "@/lib/analysis"
+import RadarGraph from "@/app/components/RadarGraph";
+import Image from "next/image";
+import { getMaxStats } from "@/lib/analysis";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
@@ -16,6 +15,8 @@ type Persona = {
     deviceType: string;
     productType: string;
     bio: string;
+    image: string;
+    src: string;
   };
   stats: {
     averageSession: number;
@@ -27,23 +28,22 @@ type Persona = {
   };
 };
 
-
 type PersonasCardProps = {
   isActive: boolean;
   persona: Persona;
   onClick: () => void;
 };
 
-
-
-
 export default function PersonasCard({
   isActive,
   persona,
   onClick,
 }: PersonasCardProps) {
-
-  const [maxData, setMaxData] = useState<{ averageSession: number; pagesVisited: number; averageCartValue: number }>();
+  const [maxData, setMaxData] = useState<{
+    averageSession: number;
+    pagesVisited: number;
+    averageCartValue: number;
+  }>();
 
   useEffect(() => {
     getMaxStats().then(setMaxData);
@@ -82,10 +82,25 @@ export default function PersonasCard({
   }
 
   const graphData = [
-    { category: "Session Length", stat: persona?.stats.averageSession / (maxData?.averageSession ?? 1) * 100 },
-    { category: "Conversion Type", stat: getConversionValue(persona?.stats.conversionType) },
-    { category: "Pages Visited", stat: persona?.stats.pagesVisited / (maxData?.pagesVisited ?? 1) * 100 },
-    { category: "Cart Value", stat: persona?.stats.averageCartValue / (maxData?.averageCartValue ?? 1) * 100 },
+    {
+      category: "Session Length",
+      stat:
+        (persona?.stats.averageSession / (maxData?.averageSession ?? 1)) * 100,
+    },
+    {
+      category: "Conversion Type",
+      stat: getConversionValue(persona?.stats.conversionType),
+    },
+    {
+      category: "Pages Visited",
+      stat: (persona?.stats.pagesVisited / (maxData?.pagesVisited ?? 1)) * 100,
+    },
+    {
+      category: "Cart Value",
+      stat:
+        (persona?.stats.averageCartValue / (maxData?.averageCartValue ?? 1)) *
+        100,
+    },
     { category: "Bounce", stat: persona?.stats.bounce },
     { category: "Proportion", stat: persona?.stats.proportion },
   ];
@@ -94,28 +109,32 @@ export default function PersonasCard({
     <div
       onClick={onClick}
       className={`mx-1 flex items-center justify-center text-white cursor-pointer transition-all duration-300 overflow-hidden h-[75vh]
-        ${isActive ?
-          'flex-[10] bg-[#003049]' :
-          'flex-[1] bg-[#669BBC]'}
+        ${isActive ? "flex-[10] bg-[#003049]" : "flex-[1] bg-[#669BBC]"}
       `}
     >
       {!isActive && (
-        <div className="w-[95%] h-full relative overflow-hidden"><Image className=" object-right object-cover" fill src={p1} alt="" /></div>
+        <div className="w-[95%] h-full relative overflow-hidden">
+          <Image
+            className=" object-right object-cover"
+            fill
+            src={persona.details.src}
+            alt=""
+          />
+        </div>
       )}
       {isActive && (
         <motion.div
           key={persona.details.name}
-          initial={{ x: 100, opacity: 0 }}      // starts slightly right
-          animate={{ x: 0, opacity: 1 }}         // slides in to center
+          initial={{ x: 100, opacity: 0 }} // starts slightly right
+          animate={{ x: 0, opacity: 1 }} // slides in to center
           // exit={{ x: -100, opacity: 0 }}         // slides out left
           transition={{ duration: 0.75, ease: "easeOut" }}
           className="flex flex-col items-center w-full h-full p-4 text-center"
         >
-
-          <div className='flex gap-x-2.5'>
+          <div className="flex gap-x-2.5">
             <div className="flex flex-col w-full h-[97%] gap-y-2.5 ">
               <div className="h-[45.7%]">
-                <Image src={p1} alt="" />
+                <Image width={1200} height={800} src={persona.details.src} alt="" />
               </div>
               <div className="flex flex-col items-start h-[30%] gap-2.5 p-5">
                 <div>Age: {persona?.details?.ageRange}</div>
@@ -123,18 +142,16 @@ export default function PersonasCard({
                 <div>Gender: {persona?.details?.sex}</div>
                 <div>Device Type: {persona?.details?.deviceType}</div>
                 <div>Traffic Source: {persona?.details?.trafficSource}</div>
-
               </div>
             </div>
             <div className="flex flex-col w-full">
-              <div className="h-[10%] text-4xl">
-                {persona?.details?.name}
+              <div className="h-[10%] text-4xl">{persona?.details?.name}</div>
+              <div className="h-[55%] justify-end">
+                {showGraph && <RadarGraph data={graphData}></RadarGraph>}
               </div>
-              <div className="h-[55%] justify-end">{showGraph && (<RadarGraph data={graphData}></RadarGraph>)}</div>
             </div>
           </div>
         </motion.div>
-
       )}
     </div>
   );
