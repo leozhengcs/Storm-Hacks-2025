@@ -1,33 +1,13 @@
 import { FunnelChart, Funnel, LabelList, Tooltip, ResponsiveContainer } from 'recharts';
+import { useEffect, useState } from "react";
+import { getFunnelData } from "@/lib/analysis";
 
 export default function FunnelGraph() {
-  const data = [
-    {
-      "value": 100,
-      "name": "Display",
-      "fill": "#8884d8"
-    },
-    {
-      "value": 80,
-      "name": "Click",
-      "fill": "#83a6ed"
-    },
-    {
-      "value": 50,
-      "name": "Visit",
-      "fill": "#8dd1e1"
-    },
-    {
-      "value": 40,
-      "name": "Enquiry",
-      "fill": "#82ca9d"
-    },
-    {
-      "value": 26,
-      "name": "Order",
-      "fill": "#a4de6c"
-    }
-  ]
+  const [data, setData] = useState<{ name: string; value: number; fill: string }[]>([]);
+
+  useEffect(() => {
+    getFunnelData().then(setData);
+  }, []);
 
   return (
     <div className='flex flex-col border-2 border-cardBorder bg-card w-full h-full rounded-xl drop-shadow-sm'>

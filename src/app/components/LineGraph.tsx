@@ -1,70 +1,32 @@
 import { LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Line, ResponsiveContainer } from 'recharts';
+import { useEffect, useState } from "react";
+import { getRevenueData } from "@/lib/analysis";
+
+type ChartDatum = { name: string; revenue: number };
 
 export default function LineGraph() {
+  const [data, setData] = useState<ChartDatum[]>([]);
 
-  const data = [
-    {
-      "name": "Page A",
-      "uv": 4000,
-      "pv": 2400,
-      "amt": 2400
-    },
-    {
-      "name": "Page B",
-      "uv": 3000,
-      "pv": 1398,
-      "amt": 2210
-    },
-    {
-      "name": "Page C",
-      "uv": 2000,
-      "pv": 9800,
-      "amt": 2290
-    },
-    {
-      "name": "Page D",
-      "uv": 2780,
-      "pv": 3908,
-      "amt": 2000
-    },
-    {
-      "name": "Page E",
-      "uv": 1890,
-      "pv": 4800,
-      "amt": 2181
-    },
-    {
-      "name": "Page F",
-      "uv": 2390,
-      "pv": 3800,
-      "amt": 2500
-    },
-    {
-      "name": "Page G",
-      "uv": 3490,
-      "pv": 4300,
-      "amt": 2100
-    }
-  ]
+  useEffect(() => {
+    getRevenueData("monthly").then((res) => setData(res));
+  }, []);
 
   return (
     <div className='flex flex-col border-2 border-cardBorder bg-card w-full h-full rounded-xl drop-shadow-sm'>
-      <div className='ml-4 mt-2 h-[5vh] text-[#111111]'><b>Daily Visits</b></div>
+      <div className='ml-4 mt-2 h-[5vh] text-[#111111]'><b>Revenue</b></div>
       <div className='h-[97.5%] w-[97.5%] self-center border-2 border-cardBorder bg-backgroundWhite rounded-xl mb-2 pt-4 pr-4'>
         <ResponsiveContainer width="100%" height="100%">
-        <LineChart width={730} height={250} data={data}
-          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Line type="monotone" dataKey="pv" stroke="#8884d8" />
-          <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-        </LineChart>
-      </ResponsiveContainer>
+          <LineChart width={730} height={250} data={data}
+            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis tickFormatter={(value) => `$${value.toLocaleString()}`} />
+            <Tooltip formatter={(value: number) => [`$${value.toLocaleString()}`, "Revenue"]}/>
+            <Line type="monotone" dataKey="revenue" stroke="#8884d8" />
+          </LineChart>
+        </ResponsiveContainer>
       </div>
-      
+
     </div>
   );
 }

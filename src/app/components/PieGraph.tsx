@@ -1,19 +1,11 @@
 import { Pie, PieChart, ResponsiveContainer, Cell, Sector, SectorProps } from 'recharts';
-import { useState } from 'react';
-
-const data = [
-  { name: 'Group A', value: 400, description: "hello testing 1" },
-  { name: 'Group B', value: 300, description: "hello testing 2" },
-  { name: 'Group C', value: 300, description: "hello testing 3" },
-  { name: 'Group D', value: 200, description: "hello testing 4" },
-];
+import { useEffect, useState } from "react";
+import { getTrafficSourceData } from "@/lib/analysis";
 
 type Coordinate = {
   x: number;
   y: number;
 };
-
-
 
 const renderActiveShape = (props: any) => {
   const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill, payload } = props;
@@ -61,6 +53,14 @@ const renderActiveShape = (props: any) => {
 };
 
 export default function PieGraph() {
+  const [data, setData] = useState<
+    { name: string; value: number; description: string }[]
+  >([]);
+
+  useEffect(() => {
+    getTrafficSourceData().then(setData);
+  }, []);
+
   return (
     <div className='flex flex-col border-2 border-cardBorder bg-card w-full h-full rounded-xl drop-shadow-sm'>
       <div className='ml-4 mt-2 h-[5vh]'>Traffic Sources</div>
