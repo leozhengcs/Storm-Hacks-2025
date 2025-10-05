@@ -8,7 +8,7 @@ import FunnelGraph from "@/app/components/FunnelGraph"
 export default function Dashboard() {
   return (
     <div className='flex gap-x-2.5'>
-      <div className="flex flex-col w-full h-[92vh] gap-y-2.5 ">
+      <div className="flex flex-col w-full h-[85vh] gap-y-2.5 ">
         <div className="h-[45.7%]">
           <LineChart></LineChart>
         </div>
@@ -17,7 +17,7 @@ export default function Dashboard() {
           <FunnelGraph></FunnelGraph>
         </div>
       </div>
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col w-full h-[85vh]">
         <PersonasGraph></PersonasGraph>
       </div>
     </div>

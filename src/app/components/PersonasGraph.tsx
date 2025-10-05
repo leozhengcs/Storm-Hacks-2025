@@ -97,10 +97,8 @@ export default function PersonasGraph() {
 
   return (
     <div className="flex flex-col border-2 border-cardBorder bg-card w-full h-[92%] rounded-xl drop-shadow-sm">
-      <div className="ml-4 mt-2 h-[5vh] font-semibold">
-        Meet your customers!
-      </div>
-      <div className="relative h-[95%] w-[95%] self-center border-2 border-cardBorder bg-backgroundWhite rounded-xl mb-2 pt-4 pr-4">
+      <div className="ml-4 mt-2 h-[5vh] font-semibold"><b>Meet your customers!</b></div>
+      <div className="relative h-[92.5%] w-[97.5%] self-center border-2 border-cardBorder bg-backgroundWhite rounded-xl mb-2 p-4">
         <svg
           ref={ref}
           viewBox="0 0 400 400"
