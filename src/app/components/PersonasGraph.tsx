@@ -3,7 +3,7 @@ import * as d3 from "d3";
 import { useEffect, useRef } from "react";
 import personas from "@/lib/personas.json";
 import p1 from "@/static/p1.png"
-import p1icon from '@/static/p1.png'
+import p1icon from '@/static/p1Icon.png'
 import Image, { StaticImageData } from "next/image";
 
 
@@ -67,10 +67,10 @@ export default function PersonasGraph() {
       .data(nodes)
       .join("image")
       .attr("href", d => d.data.image!) // expects d.data.image = URL or imported PNG
-      .attr("x", d => d.x - d.r * 0.6)
-      .attr("y", d => d.y - d.r * 0.6)
-      .attr("width", d => d.r * 1.2)
-      .attr("height", d => d.r * 1.2)
+      .attr("x", d => d.x - d.r)
+      .attr("y", d => d.y - d.r * 0.975)
+      .attr("width", d => d.r * 2)
+      .attr("height", d => d.r * 2)
       .attr("clip-path", (d, i) => `url(#clip${i})`);
     // Add text labels
     svg
