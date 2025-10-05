@@ -8,9 +8,9 @@ import FunnelGraph from "@/app/components/FunnelGraph"
 export default function Dashboard() {
   return (
     <div className='flex'>
-      <div className="flex flex-col w-full gap-y-10 pr-2.5">
+      <div className="flex flex-col w-full gap-y-5 pr-2.5">
         <LineChart></LineChart>
-        <div className="flex flex-row">
+        <div className="flex flex-row gap-5">
           <PieGraph></PieGraph>
           <FunnelGraph></FunnelGraph>
         </div>
