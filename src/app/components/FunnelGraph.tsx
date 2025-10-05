@@ -23,7 +23,7 @@ export default function FunnelGraph() {
               cy="50%"
               isAnimationActive
             >
-              <LabelList position="right" fill="#000" stroke="none" dataKey="name" />
+              <LabelList position="inside" fill="#000" stroke="none" dataKey="name" />
             </Funnel>
           </FunnelChart>
         </ResponsiveContainer>
