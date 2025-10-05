@@ -1,32 +1,54 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import profileMain from "@/static/profileMain.png";
+import AvatarMenu from "./AvatarMenu";
 
 const navItems = [
-  { name: "Personas", href: "/personas" },
-  { name: "Select Organization", type: "dropdown" },
   { name: "Dashboard", href: "/dashboard" },
+  { name: "Select Organization", type: "dropdown" },
+  { name: "Personas", href: "/personas" },
 ];
 
 const organizations = ["Zesty Cafe Inc.", "67 Burgers", "Peter Frank Estates"];
 
 export default function Navbar() {
+  const dropdownRef = useRef<HTMLUListElement | null>(null);
+  const btnRef = useRef<HTMLButtonElement | null>(null);
   const pathname = usePathname();
   const router = useRouter();
   const [dropdown, setDropdown] = useState(false);
   const [organization, setOrganization] = useState(organizations[0]);
 
+  useEffect(() => {
+    function onDocClick(e: MouseEvent) {
+      if (!open) return;
+      const t = e.target as Node;
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(t) &&
+        btnRef.current &&
+        !btnRef.current.contains(t)
+      ) {
+        setDropdown(false);
+      }
+    }
+    document.addEventListener('click', onDocClick);
+    return () => {
+      document.removeEventListener('click', onDocClick);
+    }
+  }, [dropdown])
+
   return (
-    <nav className="flex items-center justify-between w-[100vw] h-[7vh] my-2 px-12">
-      <button className="text-3xl ">
+    <nav className="relative flex items-center justify-between w-[100vw] h-[7vh] my-2 px-12">
+      <button className="text-3xl">
         Good Afternoon <b>Steven</b>
       </button>
 
-      <div className="relative flex flex-row items-center bg-customDarkBlue rounded-full px-2 py-1 h-full gap-x-6">
+      <div className="absolute top-1/12 left-1/2 -translate-x-1/2 flex flex-row items-center bg-customDarkBlue rounded-full px-2 py-1 h-16 gap-x-6 z-50">
         {navItems.map((item) => {
           const isActive = pathname === item.href;
 
@@ -36,7 +58,7 @@ export default function Navbar() {
               <button
                 key={item.name}
                 onClick={() => {router.push(item.href!); setDropdown(false)}}
-                className="relative z-10 p-5 text-white text-sm font-medium transition-colors"
+                className="relative z-10 p-3 text-white text-sm font-medium transition-colors cursor-pointer"
               >
                 {item.name}
                 {isActive && (
@@ -58,8 +80,9 @@ export default function Navbar() {
           return (
             <div key={item.name} className="relative">
               <button
+                ref={btnRef}
                 onClick={() => setDropdown((prev) => !prev)}
-                className="relative z-10 px-5 py-2 text-white text-sm font-medium flex items-center gap-1"
+                className="relative z-10 px-5 py-2 text-white text-sm font-medium flex items-center gap-1 cursor-pointer"
               >
                 {organization}
                 <svg
@@ -83,6 +106,7 @@ export default function Navbar() {
               {/* 🔽 Dropdown menu */}
               {dropdown && (
                 <motion.ul
+                  ref={dropdownRef}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
@@ -108,13 +132,14 @@ export default function Navbar() {
         })}
       </div>
 
-      <div className="w-16 aspect-square rounded-full overflow-clip">
+      {/* <div className="w-16 aspect-square rounded-full overflow-clip">
         <Image
           className="w-full aspect-square object-cover"
           src={profileMain}
           alt="Profile"
         />
-      </div>
+      </div> */}
+      <AvatarMenu profileSrc={profileMain} onLogout={() => router.push('/')} profileAlt="" profileHref="/"/>
     </nav>
   );
 }
