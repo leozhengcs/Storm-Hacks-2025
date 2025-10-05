@@ -1,0 +1,134 @@
+[
+  {
+    "details": {
+      "name": "Ava Nguyen",
+      "role": "Premium Buyer",
+      "ageRange": "25-34",
+      "country": "Australia",
+      "sex": "Other",
+      "language": "en",
+      "trafficSource": "Social",
+      "deviceType": "Mobile",
+      "productType": "Luxury Electronics",
+      "bio": "High-value, loyal customers who frequently complete purchases with high cart values and long sessions."
+    },
+    "stats": {
+      "averageSession": 420,
+      "conversionType": "Purchased",
+      "pagesVisited": 12,
+      "averageCartValue": 620.75,
+      "bounce": 0.08,
+      "proportion": 15.4
+    }
+  },
+  {
+    "details": {
+      "name": "Soo-Min Park",
+      "role": "Cart Abandoner",
+      "ageRange": "35-44",
+      "country": "South Korea",
+      "sex": "Female",
+      "language": "de",
+      "trafficSource": "Referral",
+      "deviceType": "Tablet",
+      "productType": "Home Decor",
+      "bio": "Users who explore products deeply but fail to complete checkout, likely hesitant or price-sensitive."
+    },
+    "stats": {
+      "averageSession": 310,
+      "conversionType": "Abandoned Cart",
+      "pagesVisited": 9,
+      "averageCartValue": 240.6,
+      "bounce": 0.22,
+      "proportion": 19.2
+    }
+  },
+  {
+    "details": {
+      "name": "Lukas Schmidt",
+      "role": "Casual Browser",
+      "ageRange": "18-24",
+      "country": "Germany",
+      "sex": "Male",
+      "language": "en",
+      "trafficSource": "Direct",
+      "deviceType": "Tablet",
+      "productType": "Fast Fashion",
+      "bio": "Visitors exploring items without clear intent to purchase, typically from organic or social traffic."
+    },
+    "stats": {
+      "averageSession": 95,
+      "conversionType": "Viewed Product",
+      "pagesVisited": 3,
+      "averageCartValue": 45.2,
+      "bounce": 0.52,
+      "proportion": 23.8
+    }
+  },
+  {
+    "details": {
+      "name": "Miguel Ortega",
+      "role": "Determined Shopper",
+      "ageRange": "45-54",
+      "country": "South Korea",
+      "sex": "Male",
+      "language": "es",
+      "trafficSource": "Organic Search",
+      "deviceType": "Tablet",
+      "productType": "Gadgets & Accessories",
+      "bio": "Price-conscious buyers who reach checkout but occasionally drop off before paying."
+    },
+    "stats": {
+      "averageSession": 265,
+      "conversionType": "Initiated Checkout",
+      "pagesVisited": 8,
+      "averageCartValue": 175.9,
+      "bounce": 0.18,
+      "proportion": 14.7
+    }
+  },
+  {
+    "details": {
+      "name": "Rajesh Patel",
+      "role": "Window Shopper",
+      "ageRange": "35-44",
+      "country": "Canada",
+      "sex": "Male",
+      "language": "hi",
+      "trafficSource": "Organic Search",
+      "deviceType": "Mobile",
+      "productType": "Beauty & Personal Care",
+      "bio": "Engaged visitors who add multiple products to their cart, often comparing prices and reviews."
+    },
+    "stats": {
+      "averageSession": 210,
+      "conversionType": "Added To Cart",
+      "pagesVisited": 10,
+      "averageCartValue": 130.3,
+      "bounce": 0.25,
+      "proportion": 16.8
+    }
+  },
+  {
+    "details": {
+      "name": "Yuki Tanaka",
+      "role": "Impulse Visitor",
+      "ageRange": "55-64",
+      "country": "Japan",
+      "sex": "Female",
+      "language": "ja",
+      "trafficSource": "Social",
+      "deviceType": "Tablet",
+      "productType": "Trending Deals",
+      "bio": "Low-engagement traffic from ads or referrals who leave after minimal interaction."
+    },
+    "stats": {
+      "averageSession": 45,
+      "conversionType": "Viewed Product",
+      "pagesVisited": 2,
+      "averageCartValue": 35.1,
+      "bounce": 0.94,
+      "proportion": 10.1
+    }
+  }
+]
