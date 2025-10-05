@@ -7,7 +7,7 @@ import Image from "next/image";
 import profileMain from "@/static/profileMain.png";
 
 const navItems = [
-  { name: "Personas", href: "/" },
+  { name: "Personas", href: "/personas" },
   { name: "Select Organization", type: "dropdown" },
   { name: "Dashboard", href: "/dashboard" },
 ];
