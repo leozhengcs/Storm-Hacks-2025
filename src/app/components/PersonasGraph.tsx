@@ -63,13 +63,16 @@ export default function PersonasGraph() {
   }, []);
 
   return (
-    <div className="border-4 border-red-400 w-full h-full rounded-xl bg-white flex justify-center p-4">
-      <svg
-        ref={ref}
-        viewBox="0 0 400 400"
-        className="w-full h-full"
-        preserveAspectRatio="xMidYMid meet"
-      ></svg>
+    <div className='flex flex-col border-2 border-cardBorder bg-card w-full h-[92%] rounded-xl drop-shadow-sm'>
+      <div className='ml-4 mt-2 h-[5vh]'>Meet your customers!</div>
+      <div className='h-[95%] w-[95%] self-center border-2 border-cardBorder bg-backgroundWhite rounded-xl mb-2 pt-4 pr-4'>
+        <svg
+          ref={ref}
+          viewBox="0 0 400 400"
+          className="w-full h-full"
+          preserveAspectRatio="xMidYMid meet"
+        ></svg>
+      </div>
     </div>
   );
 }
