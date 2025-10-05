@@ -28,14 +28,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <nav className="flex items-center justify-between w-[100vw] h-[7vh] my-10 px-12">
+        <nav className="flex items-center justify-between w-[100vw] h-[7vh] my-5 px-12">
           <img className="max-h-[85%] object-contain" src={logo.src} alt="Logo" />
 
-          <div className="flex flex-row items-center gap-x-10 bg-customDarkBlue rounded-full px-7 text-white h-full">
+          <div className="flex flex-row items-center gap-x-10 bg-customDarkBlue rounded-full px-7 h-full">
             <button className="text-white">Dashboard</button>
-            <span className="text-white">|</span>
             <button className="text-white">Select Org</button>
-            <span className="text-white">|</span>
             <button className="text-white">Personas</button>
           </div>
 

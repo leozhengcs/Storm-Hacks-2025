@@ -5,6 +5,10 @@ body{
   background-color: #FDF0D5;
 }
 
+.recharts-wrapper *:focus {
+  outline: none;
+}
+
 @theme {
   --color-backgroundWhite: #FDF0D5;
   --color-customLightBlue: #669BBC;
