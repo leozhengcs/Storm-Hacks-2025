@@ -2,10 +2,15 @@
 import * as d3 from "d3";
 import { useEffect, useRef } from "react";
 import personas from "@/lib/personas.json";
+import p1 from "@/static/p1.png"
+import p1icon from '@/static/p1.png'
+import Image, { StaticImageData } from "next/image";
+
 
 type NodeData = {
   name: string;
   value?: number;
+  image?: string;
   children?: NodeData[];
 };
 
@@ -20,7 +25,8 @@ export default function PersonasGraph() {
       name: "root",
       children: personas.map(p => ({
         name: p.details.name,
-        value: p.stats.proportion, // bubble size
+        value: p.stats.proportion, // bubble size\
+        image: p1icon.src
       })),
     };
 
@@ -56,6 +62,16 @@ export default function PersonasGraph() {
       .append("title")
       .text(d => `${d.data.name}: ${d.data.value?.toFixed(1)}%`);
 
+    svg
+      .selectAll("image")
+      .data(nodes)
+      .join("image")
+      .attr("href", d => d.data.image!) // expects d.data.image = URL or imported PNG
+      .attr("x", d => d.x - d.r * 0.6)
+      .attr("y", d => d.y - d.r * 0.6)
+      .attr("width", d => d.r * 1.2)
+      .attr("height", d => d.r * 1.2)
+      .attr("clip-path", (d, i) => `url(#clip${i})`);
     // Add text labels
     svg
       .selectAll("text")
@@ -73,7 +89,7 @@ export default function PersonasGraph() {
   return (
     <div className="flex flex-col border-2 border-cardBorder bg-card w-full h-[92%] rounded-xl drop-shadow-sm">
       <div className="ml-4 mt-2 h-[5vh] font-semibold">Meet your customers!</div>
-      <div className="h-[95%] w-[95%] self-center border-2 border-cardBorder bg-backgroundWhite rounded-xl mb-2 pt-4 pr-4">
+      <div className="relative h-[95%] w-[95%] self-center border-2 border-cardBorder bg-backgroundWhite rounded-xl mb-2 pt-4 pr-4">
         <svg
           ref={ref}
           viewBox="0 0 400 400"

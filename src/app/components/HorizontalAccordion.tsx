@@ -1,24 +1,18 @@
 import { useState } from 'react';
 import PersonasCard from './PersonasCard';
 
-const panels = [
-  { title: 'Panel 1', content: 'Content 1' },
-  { title: 'Panel 2', content: 'Content 2' },
-  { title: 'Panel 3', content: 'Content 3' },
-  { title: 'Panel 4', content: 'Content 4' },
-  { title: 'Panel 5', content: 'Content 5' },
-];
+import personas from "@/lib/personas.json"
+
 
 export default function HorizontalAccordion() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   return (
     <div className="flex w-full h-64">
-      {panels.map((panel, index) => (
+      {personas.map((persona, index) => (
         <PersonasCard
           key={index}
-          title={panel.title}
-          content={panel.content}
+          persona={persona}
           isActive={index === activeIndex}
           onClick={() =>
             setActiveIndex(index === activeIndex ? null : index)

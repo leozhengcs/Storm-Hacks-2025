@@ -121,3 +121,74 @@ export async function getFunnelData(): Promise<FunnelDatum[]> {
 
   return funnelData;
 }
+
+
+
+export async function getData(): Promise<FunnelDatum[]> {
+  const response = await fetch("/data.csv");
+  const text = await response.text();
+  const { data } = Papa.parse(text, { header: true, dynamicTyping: true });
+
+  const stages = {
+    viewed: 0,
+    added: 0,
+    checkout: 0,
+    purchased: 0,
+    abandoned: 0,
+  };
+
+  data.forEach((row: any) => {
+    const action = (row.conversion_action || "").toLowerCase();
+    if (action === "viewed product") stages.viewed++;
+    else if (action === "added to cart") stages.added++;
+    else if (action === "initiated checkout") stages.checkout++;
+    else if (action === "purchased") stages.purchased++;
+    else if (action === "abandoned cart") stages.abandoned++;
+  });
+
+  const base = stages.viewed + stages.added + stages.checkout + stages.purchased + stages.abandoned || 1; // avoid divide by zero
+
+  const funnelData: FunnelDatum[] = [
+    { name: "Viewed Product", value: 100, fill: "#8884d8" },
+    { name: "Added to Cart", value: ((base - stages.added) / base) * 100, fill: "#83a6ed" },
+    { name: "Abandoned Cart", value: ((base - stages.added - stages.abandoned) / base) * 100, fill: "#8dd1e1" },
+    { name: "Initiated Checkout", value: ((base - stages.added - stages.abandoned - stages.checkout) / base) * 100, fill: "#82ca9d" },
+    { name: "Purchased", value: ((base - stages.added - stages.abandoned - stages.checkout - stages.purchased) / base) * 100, fill: "#a4de6c" },
+    
+  ];
+
+  return funnelData;
+}
+
+export async function getMaxStats() {
+  const response = await fetch("/data.csv");
+  const text = await response.text();
+  const { data } = Papa.parse(text, { header: true, dynamicTyping: true });
+
+  let maxSession = 0;
+  let maxPages = 0;
+  let maxCart = 0;
+
+  data.forEach((row: any) => {
+    const session = Number(row.session_duration_seconds) || 0;
+    const pages = Number(row.pages_visited) || 0;
+    const cart = Number(row.cart_value) || 0;
+
+    if (session > maxSession) maxSession = session;
+    if (pages > maxPages) maxPages = pages;
+    if (cart > maxCart) maxCart = cart;
+  });
+
+  // Estimate conversionType as the most common conversion action
+  const conversionCounts: Record<string, number> = {};
+  data.forEach((row: any) => {
+    const action = (row.conversion_action || "Unknown").trim();
+    conversionCounts[action] = (conversionCounts[action] || 0) + 1;
+  });
+
+  return {
+    averageSession: maxSession,
+    pagesVisited: maxPages,
+    averageCartValue: maxCart,
+  };
+}
