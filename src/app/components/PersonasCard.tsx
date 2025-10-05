@@ -106,10 +106,12 @@ export default function PersonasCard({
   ];
 
   return (
+        // <div className={`flex flex-col p-2 border-2 border-cardBorder bg-card w-full h-[85vh] rounded-xl drop-shadow-sm ${isActive ? "flex-[10]":"flex-[1]"}`}>
+
     <div
       onClick={onClick}
-      className={`mx-1 flex items-center justify-center text-white cursor-pointer transition-all duration-300 overflow-hidden h-[75vh]
-        ${isActive ? "flex-[10] bg-[#003049]" : "flex-[1] bg-[#669BBC]"}
+      className={`mx-1 flex items-center justify-center text-black rounded-xl cursor-pointer transition-all duration-300 overflow-hidden h-[75vh]
+        ${isActive ? "flex-[10] bg-[#669BBC]" : "flex-[1] bg-card"}
       `}
     >
       {!isActive && (
@@ -131,21 +133,26 @@ export default function PersonasCard({
           transition={{ duration: 0.75, ease: "easeOut" }}
           className="flex flex-col items-center w-full h-full p-4 text-center"
         >
+          
           <div className="flex gap-x-2.5">
             <div className="flex flex-col w-full h-[97%] gap-y-2.5 ">
               <div className="h-[45.7%]">
                 <Image width={1200} height={800} src={persona.details.src} alt="" />
               </div>
-              <div className="flex flex-col items-start h-[30%] gap-2.5 p-5">
+              
+            </div>
+            <div className="flex flex-col w-full">
+              <div className="h-[10%] text-4xl">{persona?.details?.name}</div>
+    <div className="flex flex-col border-2 border-cardBorder bg-card w-full h-[30%] rounded-xl drop-shadow-sm">
+
+              <div className="flex flex-col items-start justify-center h-[100%] gap-2.5 p-5">
                 <div>Age: {persona?.details?.ageRange}</div>
                 <div>Country: {persona?.details?.country}</div>
                 <div>Gender: {persona?.details?.sex}</div>
                 <div>Device Type: {persona?.details?.deviceType}</div>
                 <div>Traffic Source: {persona?.details?.trafficSource}</div>
               </div>
-            </div>
-            <div className="flex flex-col w-full">
-              <div className="h-[10%] text-4xl">{persona?.details?.name}</div>
+              </div>
               <div className="h-[55%] justify-end">
                 {showGraph && <RadarGraph data={graphData}></RadarGraph>}
               </div>
@@ -154,5 +161,6 @@ export default function PersonasCard({
         </motion.div>
       )}
     </div>
+    // </div>
   );
 }

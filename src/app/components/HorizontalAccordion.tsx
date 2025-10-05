@@ -22,8 +22,10 @@ export default function HorizontalAccordion() {
 
 
   return (
-    <div className="flex w-full h-64">
+
+    <div className="flex mx-2 mt-2 w-full h-64">
       {personas.map((persona, index) => (
+        
         <PersonasCard
           key={index}
           persona={persona}
