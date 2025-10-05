@@ -45,7 +45,6 @@ export async function getRevenueData(view: "monthly" | "weekly" = "monthly") {
     (a, b) => new Date(a.name).getTime() - new Date(b.name).getTime()
   );
   const fixedChartData = chartData.slice(1)
-  console.log(fixedChartData)
   return fixedChartData;
 }
 
